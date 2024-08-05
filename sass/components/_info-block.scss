@@ -1,0 +1,37 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 4.8rem;
+  margin-top: 8rem;
+
+  &--reversed {
+    flex-direction: row-reverse;
+    padding-right: 0;
+    padding-left: 4.8rem;
+
+    & .info__image {
+      border-radius: 329px 0px 0px 329px;
+    }
+  }
+
+  &__image,
+  &__text {
+    width: 48%;
+  }
+
+  &__image {
+    border-radius: 0px 329px 329px 0px;
+    max-height: 658px;
+    object-fit: cover;
+  }
+
+  &__headline {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    margin-top: 3rem;
+  }
+}

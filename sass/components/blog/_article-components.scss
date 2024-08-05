@@ -1,0 +1,69 @@
+.article-headline {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.article-text-image {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6rem;
+
+  &--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &--portrait {
+    .article-text-image__container {
+      width: 29%;
+    }
+
+    .article-text-image__text {
+      width: 68%;
+    }
+  }
+
+  &__text {
+    width: 42%;
+  }
+
+  &__container {
+    width: 55%;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__caption {
+    color: $gray;
+  }
+}
+
+.article-paragraph {
+  margin-bottom: 6rem;
+}
+
+.article-landscape-image {
+  width: 65%;
+  min-width: 40rem;
+  display: block;
+  margin: 0 auto 6rem;
+
+  img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__caption {
+    color: $gray;
+    margin-top: 1rem;
+  }
+}

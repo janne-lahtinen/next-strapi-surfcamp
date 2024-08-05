@@ -1,18 +1,18 @@
 import { fetchDataFromStrapi, processInfoblocks } from "@/utils/strapi.utils";
 import HeroSection from "@/app/_components/HeroSection";
 import InfoBlock from "@/app/_components/InfoBlock";
-import frontHero from '@/public/assets/front_hero.png';
-import BlogPreview from "./_components/BlogPreview/BlogPreview";
+import experienceHero from '@/public/assets/experience_hero.png';
 import { type BlocksContent } from '@strapi/blocks-react-renderer';
 import { ReactElement } from "react";
 
 interface infoBlockData {
-  id: number
   headline: string;
   text: BlocksContent;
-  button: ReactElement;
+  showImageRight: boolean;
+  publishedAt: string;
   image: {
     data: {
+      id: number;
       attributes: {
         id: string;
         name: string;
@@ -23,14 +23,12 @@ interface infoBlockData {
       }
     }
   };
-  showImageRight: boolean;
+  button?: ReactElement;
   imageSrc: string;
+  id: number;
 }
 
-export default async function Home() {
-  const data = await fetchDataFromStrapi({route: 'infoblocks-landing?populate=deep'});
-  const infoBlockData = await processInfoblocks(data);  
-
+export default async function Experience() {
   const heroHeadline = (
     <>
       <h1>
@@ -41,13 +39,15 @@ export default async function Home() {
     </>
   );
 
+  const data = await fetchDataFromStrapi({ route: 'infoblocks-experience?populate=deep' });
+  const infoBlockData = await processInfoblocks(data);
+
   return (
     <main>
-      <HeroSection headline={heroHeadline} imgSrc={frontHero} />
-      {infoBlockData.map((block: infoBlockData) => {
-        return <InfoBlock key={block.id} data={block} />
-      })}
-      <BlogPreview />
+      <HeroSection headline={heroHeadline} imgSrc={experienceHero} theme="orange" />
+      {infoBlockData.map((data: infoBlockData) => (
+        <InfoBlock key={data.id} data={data} />
+      ))}
     </main>
   );
 }
