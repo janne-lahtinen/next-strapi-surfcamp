@@ -1,3 +1,9 @@
+# Surfcamp site with Next.js front end (and Strapi back end)
+
+This is a site project from Udemy course [The Freelance Stack: Real project with NextJS and Strapi](https://www.udemy.com/share/109MEc3@n4W8o6w1jtvEqjD1-PrJv8a2-E0sdsX6DrbNTKrvueKq4Y8KEqn7DQ5FbzBc-BDf/).
+
+-----------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
