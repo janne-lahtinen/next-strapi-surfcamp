@@ -23,7 +23,7 @@ interface EventItems {
   name: string;
   id: number;
   date: string;
-  image: { url: string; width: number; height: number };
+  image: { src: string; width: number; height: number };
   startingDate: string;
   sharedPrice: number;
 }
