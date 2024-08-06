@@ -22,7 +22,9 @@ const Header = () => {
 
   return (
     <header className={`header ${path === '/experience' ? 'header--light' : ''}`}>
-      <Image className="header__logo" src='/assets/logo.svg' alt='Logo' width={100} height={100} />
+      <Link href='/'>
+        <Image className="header__logo" src='/assets/logo.svg' alt='Logo' width={100} height={100} />
+      </Link>
       <ul className="header__nav">
         {navItems.map(item => {
           return (

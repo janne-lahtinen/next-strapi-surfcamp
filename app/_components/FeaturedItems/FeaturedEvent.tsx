@@ -7,22 +7,18 @@ interface EventContent {
     name: string;
     id: number;
     date: string;
-    image: { src: string; width: number; height: number };
-    imageSrc: string;
+    image: { url: string; width: number; height: number };
     startingDate: string;
     sharedPrice: number;
-  }
+  };
 }
 
-const FeaturedEvent = ({event}: EventContent) => {  
+const FeaturedEvent: React.FC<EventContent> = ({ event }) => {
   return (
-    <Link
-      href={`/events/${event.id}`}
-      className="featured-items__article"
-    >
+    <Link href={`/events/${event.id}`} className="featured-items__article">
       <div className="featured-items__article-image">
         <Image
-          src={event.image.src}
+          src={event.image.url}
           width={event.image.width}
           height={event.image.height}
           alt={`Go check out the event: ${event.name}`}
@@ -34,7 +30,7 @@ const FeaturedEvent = ({event}: EventContent) => {
         <p className="copy--small">Prices starting at {event.sharedPrice} €</p>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 export default FeaturedEvent;

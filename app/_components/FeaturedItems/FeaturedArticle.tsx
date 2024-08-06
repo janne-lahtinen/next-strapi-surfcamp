@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { StaticImageData } from "next/image";
 import { formatDate } from "@/utils/strapi.utils";
 
 interface ArticleContent {
@@ -11,15 +10,12 @@ interface ArticleContent {
     featuredImage: { data: { attributes: { url: string; width: number; height: number } } };
     imageSrc: string;
     publishedAt: string;
-  }
+  };
 }
 
-const FeaturedArticle = ({article}: ArticleContent) => {  
+const FeaturedArticle: React.FC<ArticleContent> = ({ article }) => {
   return (
-    <Link
-      href={`/blog/${article.slug}`}
-      className="featured-items__article"
-    >
+    <Link href={`/blog/${article.slug}`} className="featured-items__article">
       <div className="featured-items__article-image">
         <Image
           src={article.imageSrc}
@@ -33,7 +29,7 @@ const FeaturedArticle = ({article}: ArticleContent) => {
         <p className="copy--small">{formatDate(article.publishedAt)}</p>
       </div>
     </Link>
-  )
-}
+  );
+};
 
 export default FeaturedArticle;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import FeaturedArticle from "@/app/_components/FeaturedItems/FeaturedArticle";
 import FeaturedEvent from "./FeaturedEvent";
 
-interface articleItems {
+interface ArticleItems {
   headline: string;
   slug: string;
   date: string;
@@ -13,13 +13,13 @@ interface articleItems {
   publishedAt: string;
 }
 
-interface articleContent {
+interface ArticleContent {
   headline?: string | null;
-  itemType: string;
-  items: articleItems[];
+  itemType: 'article';
+  items: ArticleItems[];
 }
 
-interface eventItems {
+interface EventItems {
   name: string;
   id: number;
   date: string;
@@ -28,45 +28,45 @@ interface eventItems {
   sharedPrice: number;
 }
 
-interface eventContent {
+interface EventContent {
   headline?: string | null;
-  itemType: string;
-  items: eventItems[];
+  itemType: 'event';
+  items: EventItems[];
 }
 
-type itemContent = articleContent | eventContent;
+type ItemContent = ArticleContent | EventContent;
 
-// const isArticleContent = (content: itemContent): content is articleContent => {
-//   return content.itemType === 'article';
-// };
+// Type Guards
+const isArticleItems = (item: ArticleItems | EventItems): item is ArticleItems => {
+  return (item as ArticleItems).slug !== undefined;
+};
 
-// const isEventContent = (content: itemContent): content is eventContent => {
-//   return content.itemType === 'event';
-// };
+const isEventItems = (item: ArticleItems | EventItems): item is EventItems => {
+  return (item as EventItems).id !== undefined;
+};
 
-const FeaturedItems = ({ headline, items, itemType = 'article' }: itemContent) => {
+const FeaturedItems: React.FC<ItemContent> = ({ headline, items, itemType }) => {
   const [itemNumber, setItemNumber] = useState(3);
 
   const onShowMore = () => {
     if (itemNumber + 3 > items.length) {
-      setItemNumber(items.length)
+      setItemNumber(items.length);
     } else {
-      setItemNumber(itemNumber + 3)
+      setItemNumber(itemNumber + 3);
     }
-  }  
+  };
 
   return (
     <section className="featured-items">
-      <h3 className="featured-items__headline">{ headline || 'Our featured articles' }</h3>
+      <h3 className="featured-items__headline">{headline || 'Our featured articles'}</h3>
       <div className="featured-items__container">
-        {items
-          .slice(0, itemNumber)
-          .map((item: any) => { // Todo: change type
-            if (itemType === 'article') {
-              return <FeaturedArticle key={item.slug} article={item} />
-            } else {
-              return <FeaturedEvent key={item.id} event={item} />
-            }
+        {items.slice(0, itemNumber).map((item) => {
+          if (itemType === 'article' && isArticleItems(item)) {
+            return <FeaturedArticle key={item.slug} article={item} />;
+          } else if (itemType === 'event' && isEventItems(item)) {
+            return <FeaturedEvent key={item.id} event={item} />;
+          }
+          return null;
         })}
       </div>
       {itemNumber < items.length && (
@@ -75,7 +75,7 @@ const FeaturedItems = ({ headline, items, itemType = 'article' }: itemContent) =
         </button>
       )}
     </section>
-  )
-}
+  );
+};
 
 export default FeaturedItems;
