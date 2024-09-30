@@ -102,7 +102,7 @@ interface infoBlockData {
       }
     }
   };
-  button?: ReactElement;
+  button?: infoBlockButton;
   imageSrc: string;
   id: number;
 }
@@ -118,8 +118,6 @@ interface infoBlockRawData {
     }
   }
 }
-
-type queryType = { [key: string]: object }
 
 interface Filters {
   startingDate: {
@@ -162,15 +160,19 @@ export function processImageSource(url: string) {
 
 export async function processInfoblocks(data: infoBlockRawData) {
   const infoBlocksRaw = data.attributes.info_blocks.data;
-  return infoBlocksRaw.map((infoblock: any) => ({ // Todo: change type
-    ...infoblock.attributes,
-    imageSrc: BASE_URL + infoblock.attributes.image?.data?.attributes?.url,
-    id: infoblock.id,
-    button: createInfoBlockButton(infoblock.attributes.button)
-  }));
+  return infoBlocksRaw.map((infoblock: any) => {
+    console.log(infoblock);
+    
+    return ({
+      ...infoblock.attributes,
+      imageSrc: BASE_URL + infoblock.attributes.image?.data?.attributes?.url,
+      id: infoblock.id,
+      button: createInfoBlockButton(infoblock.attributes.button)
+    })
+  });
 }
 
-function createInfoBlockButton(buttonData: infoBlockButton) {
+function createInfoBlockButton(buttonData: infoBlockButton): ReactElement | null {
   if (!buttonData) {
     return null;
   }

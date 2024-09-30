@@ -40,37 +40,41 @@ const ArticleComponent = ({component}: {component: unionComponent}) => {
   const isHeadlineComponent = (component: unionComponent): component is headlineComponent => {
     return component.__component === 'blog-article.headline';
   };
-  
+
   const isParagraphComponent = (component: unionComponent): component is paragraphComponent => {
     return component.__component === 'blog-article.paragraph';
   };
-  
+
   const isImageTextComponent = (component: unionComponent): component is imageTextComponent => {
     return component.__component === 'blog-article.paragraph-with-image';
   };
-  
+
   const isLandscapeImageComponent = (component: unionComponent): component is landscapeImageComponent => {
     return component.__component === 'blog-article.landscape-image';
   };
-  
-    
+
+
   switch (componentType) {
     case 'headline':
       if (isHeadlineComponent(component)) {
         return <ArticleHeadline component={component} />;
       }
+      break;
     case 'paragraph-with-image':
       if (isImageTextComponent(component)) {
         return <ImageTextComponent component={component} />;
       }
+      break;
     case 'paragraph':
       if (isParagraphComponent(component)) {
         return <ArticleParagraph component={component} />;
       }
+      break;
     case 'landscape-image':
       if (isLandscapeImageComponent(component)) {
         return <LandscapeImage component={component} />;
       }
+      break;
     default:
       return <p>Component not found</p>;
   }

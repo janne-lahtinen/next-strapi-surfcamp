@@ -45,9 +45,9 @@ export default async function Event({ params }: paramsData) {
 export async function generateStaticParams() {
   try {
     const events = await fetchDataFromStrapi({route:'events'});
-    const slugs = events.map((event: {id: string;}) => {
-      eventId: String(event.id);
-    })
+    const slugs = events.map((event: {id: string}) => ({
+      eventId: String(event.id)
+    }))
     return slugs;
   } catch (error) {
     console.log('Error fetching slugs for events.', error);

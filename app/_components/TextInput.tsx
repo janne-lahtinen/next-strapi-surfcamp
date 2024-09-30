@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface inputData {
   inputName: string;
   value: string;

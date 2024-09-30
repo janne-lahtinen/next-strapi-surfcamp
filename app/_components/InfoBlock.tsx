@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ReactElement } from "react";
-import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
+import { type BlocksContent } from '@strapi/blocks-react-renderer';
 import blockImage from '@/public/assets/tent_view.png';
 import BlocksRendererClient from "./BlocksRendererClient";
 
@@ -27,12 +27,12 @@ interface InfoBlockData {
   }
 }
 
-const InfoBlock = ({data}: InfoBlockData) => {  
-  const { headline, showImageRight, image, imageSrc, text, button } = data;  
+const InfoBlock = ({data}: InfoBlockData) => {
+  const { headline, showImageRight, image, imageSrc, text, button } = data;
 
   let infoImage: ReactElement;
   if (image) {
-    infoImage = <Image 
+    infoImage = <Image
       className="info__image"
       src={imageSrc}
       alt={image.data.attributes.alternativeText ? image.data.attributes.alternativeText : ''}

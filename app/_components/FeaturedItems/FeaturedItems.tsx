@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import React from 'react';
 import FeaturedArticle from "@/app/_components/FeaturedItems/FeaturedArticle";
 import FeaturedEvent from "./FeaturedEvent";
 

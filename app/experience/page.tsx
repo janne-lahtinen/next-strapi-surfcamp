@@ -40,7 +40,7 @@ export default async function Experience() {
   );
 
   const data = await fetchDataFromStrapi({ route: 'infoblocks-experience?populate=deep' });
-  const infoBlockData = await processInfoblocks(data);
+  const infoBlockData = await processInfoblocks(data);  
 
   return (
     <main>

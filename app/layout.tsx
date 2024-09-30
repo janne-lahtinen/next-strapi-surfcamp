@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from 'react';
 import '@/sass/main.scss'
 import Header from "./_components/layout/Header";
 import Footer from "./_components/layout/Footer";

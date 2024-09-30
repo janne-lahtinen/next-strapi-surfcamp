@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement } from "react";
 
 interface data {
   data: {
@@ -14,7 +13,7 @@ interface data {
 
 const HighlightArticle = ({data}:data) => {
   const { headline, excerpt, slug, imageSrc, featuredImage } = data;
-  
+
   return (
     <article className="highlight-article">
       <div className="highlight-article__info">
