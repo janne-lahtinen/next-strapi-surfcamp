@@ -9,16 +9,6 @@ interface paramsData {
   }
 }
 
-interface eventData {
-  name: string;
-  id: number;
-  date: string;
-  image: { src: string; width: number; height: number };
-  imageSrc: string;
-  startingDate: string;
-  sharedPrice: number;
-}
-
 export default async function Event({ params }: paramsData) {
   const { eventId } = params;
   const event = await fetchIndividualEvent(eventId);
